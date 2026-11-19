@@ -1,0 +1,7 @@
+const menu=document.querySelector('.menu'),nav=document.querySelector('.navlinks');
+menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Fechar menu':'Abrir menu')});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
+const audio=document.querySelector('audio'),controls=document.querySelectorAll('[data-play]'),status=document.querySelector('.status');
+function update(){controls.forEach(b=>{b.setAttribute('aria-pressed',String(!audio.paused));if(b.classList.contains('play')){b.textContent=audio.paused?'▶':'Ⅱ';b.setAttribute('aria-label',audio.paused?'Ouvir rádio ao vivo':'Pausar rádio')}else b.textContent=audio.paused?'▶  Ouvir ao vivo':'Ⅱ  Pausar rádio'});status.textContent=audio.paused?'Pronto para ouvir':'Você está ouvindo ao vivo'}
+controls.forEach(b=>b.addEventListener('click',async()=>{if(!audio.paused){audio.pause();return}status.textContent='Conectando à rádio…';try{await audio.play()}catch(e){status.textContent='Não foi possível conectar. Tente novamente.'}}));
+audio.addEventListener('play',update);audio.addEventListener('pause',update);audio.addEventListener('error',()=>{status.textContent='Transmissão indisponível no momento.'});document.querySelector('#volume').addEventListener('input',e=>audio.volume=Number(e.target.value));audio.volume=.8;
