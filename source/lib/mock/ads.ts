@@ -1,0 +1,162 @@
+import type { AdCreative, AdSlotId } from "@/lib/types";
+
+/**
+ * Inventário publicitário de demonstração.
+ * Quando mais de uma peça está no ar no mesmo espaço, elas se revezam:
+ * é o "banner rotativo". Alguns espaços ficam propositalmente vazios para
+ * o cliente enxergar, no próprio site, o que ainda tem para vender.
+ */
+export const creatives: AdCreative[] = [
+  {
+    id: "ban-01",
+    advertiserId: "anu-01",
+    advertiserName: "Padaria Pão Quente",
+    imageUrl: "/mock/banner-topo.jpg",
+    alt: "Padaria Pão Quente: pães saindo do forno todos os dias às 6h",
+    href: "https://exemplo.com.br/padaria-pao-quente",
+    slot: "topo-banner",
+    band: "topo",
+    startDate: "2026-08-20",
+    endDate: "2026-09-20",
+    priceCents: 18000,
+    status: "no-ar",
+  },
+  {
+    id: "ban-02",
+    advertiserId: "anu-02",
+    advertiserName: "Ótica Visão Clara",
+    imageUrl: "/mock/banner-topo-2.jpg",
+    alt: "Ótica Visão Clara: exame de vista gratuito na compra dos óculos",
+    href: "https://exemplo.com.br/otica-visao-clara",
+    slot: "topo-banner",
+    band: "topo",
+    startDate: "2026-08-25",
+    endDate: "2026-09-25",
+    priceCents: 14000,
+    status: "no-ar",
+  },
+  {
+    id: "ban-03",
+    advertiserId: "anu-03",
+    advertiserName: "Auto Peças do Vale",
+    imageUrl: "/mock/banner-meio.jpg",
+    alt: "Auto Peças do Vale: peças originais com entrega no mesmo dia",
+    href: "https://exemplo.com.br/auto-pecas-do-vale",
+    slot: "topo-banner",
+    band: "topo",
+    startDate: "2026-08-10",
+    endDate: "2026-09-10",
+    priceCents: 16000,
+    status: "no-ar",
+  },
+  {
+    id: "ban-04",
+    advertiserId: "anu-04",
+    advertiserName: "Mercado Bom Preço",
+    imageUrl: "/mock/banner-rodape.jpg",
+    alt: "Mercado Bom Preço: ofertas da semana na feira e no açougue",
+    href: "https://exemplo.com.br/mercado-bom-preco",
+    slot: "rodape-banner",
+    band: "rodape",
+    startDate: "2026-08-18",
+    endDate: "2026-09-18",
+    priceCents: 12000,
+    status: "no-ar",
+  },
+  {
+    id: "ban-05",
+    advertiserId: "anu-05",
+    advertiserName: "Casa & Cia Móveis",
+    imageUrl: "/mock/banner-rodape-2.jpg",
+    alt: "Casa & Cia Móveis: sofás e colchões em até 12 vezes sem juros",
+    href: "https://exemplo.com.br/casa-e-cia",
+    slot: "rodape-banner",
+    band: "rodape",
+    startDate: "2026-08-27",
+    endDate: "2026-09-26",
+    priceCents: 15000,
+    status: "no-ar",
+  },
+  {
+    id: "ban-06",
+    advertiserId: "anu-06",
+    advertiserName: "Salão Beleza Real",
+    imageUrl: "/mock/banner-meio-2.jpg",
+    alt: "Salão Beleza Real: escova e hidratação com hora marcada",
+    href: "https://exemplo.com.br/salao-beleza-real",
+    slot: "topo-banner",
+    band: "topo",
+    startDate: "2026-09-01",
+    endDate: "2026-09-30",
+    priceCents: 13000,
+    status: "agendado",
+  },
+  {
+    id: "ban-07",
+    advertiserId: "anu-02",
+    advertiserName: "Ótica Visão Clara",
+    imageUrl: "/mock/banner-rodape.jpg",
+    alt: "Ótica Visão Clara: promoção de lentes multifocais",
+    href: "https://exemplo.com.br/otica-visao-clara",
+    slot: "feed-inline",
+    band: null,
+    startDate: "2026-09-05",
+    endDate: "2026-10-05",
+    priceCents: 11000,
+    status: "aguardando-pagamento",
+  },
+  {
+    id: "ban-08",
+    advertiserId: "anu-01",
+    advertiserName: "Padaria Pão Quente",
+    imageUrl: "/mock/banner-meio.jpg",
+    alt: "Padaria Pão Quente: rosca de Páscoa por encomenda",
+    href: "https://exemplo.com.br/padaria-pao-quente",
+    slot: "destaque-1",
+    band: null,
+    startDate: "2026-07-15",
+    endDate: "2026-08-14",
+    priceCents: 9000,
+    status: "expirado",
+  },
+  {
+    id: "ban-09",
+    advertiserId: "anu-03",
+    advertiserName: "Auto Peças do Vale",
+    imageUrl: "/mock/banner-topo-2.jpg",
+    alt: "Auto Peças do Vale: revisão completa com desconto",
+    href: "https://exemplo.com.br/auto-pecas-do-vale",
+    slot: "rodape-banner",
+    band: "rodape",
+    startDate: "2026-06-01",
+    endDate: "2026-06-30",
+    priceCents: 14000,
+    status: "expirado",
+  },
+  {
+    id: "ban-10",
+    advertiserId: "anu-04",
+    advertiserName: "Mercado Bom Preço",
+    imageUrl: "/mock/banner-topo.jpg",
+    alt: "Mercado Bom Preço: cesta básica com preço fechado",
+    href: "https://exemplo.com.br/mercado-bom-preco",
+    slot: "destaque-2",
+    band: null,
+    startDate: "2026-09-10",
+    endDate: "2026-10-10",
+    priceCents: 10000,
+    status: "agendado",
+  },
+];
+
+/** Todas as peças no ar em um espaço — mais de uma significa rodízio. */
+export function getCreatives(slot: AdSlotId): AdCreative[] {
+  return creatives.filter(
+    (creative) => creative.slot === slot && creative.status === "no-ar",
+  );
+}
+
+/** Primeira peça no ar em um espaço, ou undefined se o espaço está livre. */
+export function getCreative(slot: AdSlotId): AdCreative | undefined {
+  return getCreatives(slot)[0];
+}
