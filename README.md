@@ -9,3 +9,7 @@ Captura pública de 19/11/2026, autorizada pelo responsável. Site original Next
 ## Primeira proposta de home
 
 Home reformulada somente no GitHub Pages em 19/11/2026. Versão anterior preservada em `docs/home-original.html`. Foto ilustrativa de estúdio via Unsplash (photo-1598488035139-bdbb2231ce04). Nenhuma publicação no domínio original ou acesso à VPS nesta etapa.
+
+## Ajustes de texto e linkagem — 23/11/2026
+
+Aplicados somente na cópia do Pages: título da abertura à esquerda, expressões abaixo de reprodução do banner da TV e três chamadas com imagens e links HTML para artigos de teste. Textos dos artigos preparados para aprovação. O banner e a foto dos instrumentos não foram editados. Fotos temáticas e origens em `docs/editorial-image-sources.json`. Todas as páginas novas continuam com `noindex,nofollow`; não há publicação no domínio principal, integração, alteração comercial ou acesso à VPS nesta etapa.
